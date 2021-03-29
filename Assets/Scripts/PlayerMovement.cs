@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
+    private CharacterController controller;
+    public Animator anim;
 
     public float speed = 12f;
     public float gravity = -9.81f;
@@ -21,15 +22,17 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        controller = GetComponent<CharacterController>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        anim.SetBool("isGrounded", isGrounded);
 
-        if(isGrounded && velocity.y < 0)
+        if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
@@ -39,6 +42,17 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
+        if(move != Vector3.zero && isGrounded)
+        {
+            //Run
+            anim.SetFloat("Speed", z);
+        }
+        else if(move == Vector3.zero)
+        {
+            //Idle
+            anim.SetFloat("Speed", 0);
+        }
+        
         controller.Move(move * speed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
