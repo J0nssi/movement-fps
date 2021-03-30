@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
+    public float fallDamageHeight = 10f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -34,6 +35,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && velocity.y < 0)
         {
+            float fallHeight = Mathf.Pow(velocity.y, 2) / -2f / gravity;
+            if (fallHeight > fallDamageHeight)
+            {
+                int damage = (int)((fallHeight - fallDamageHeight)*20);
+                Debug.Log("Damaged player for: " + damage);
+                PlayerHealth.singleton.Damage(damage);
+            }
             velocity.y = -2f;
         }
 
