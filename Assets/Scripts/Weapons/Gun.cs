@@ -4,6 +4,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     // Start is called before the first frame update
+    public bool automatic = false;
     public float damage = 25f;
     public float fireRate = 5f;
     
@@ -62,7 +63,8 @@ public class Gun : MonoBehaviour
         rightArmTarget.position = rightHandGrip.position;
         rightArmTarget.rotation = rightHandGrip.rotation;
 
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        if ((automatic && Input.GetButton("Fire1") && Time.time >= nextTimeToFire) || 
+            (!automatic && Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire))
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();

@@ -114,13 +114,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6142085856791357317}
-  m_LocalRotation: {x: -0.58229744, y: 0.6395508, z: 0.37929717, w: -0.32869178}
-  m_LocalPosition: {x: -0.139, y: -0.032, z: -0.051}
+  m_LocalRotation: {x: -0.54721814, y: 0.5992274, z: 0.44024768, w: -0.3842666}
+  m_LocalPosition: {x: -0.1778, y: -0.0027, z: -0.0544}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1136973053182693465}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -5.875, y: 240.07901, z: -88.034}
+  m_LocalEulerAnglesHint: {x: -6.146, y: 251.405, z: -89.224}
 --- !u!1 &7861401007752742079
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c7bed9332cb2c48a5e1321a49c2883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  automatic: 1
   damage: 20
   fireRate: 10
   muzzleFlash: {fileID: 6185229357874812658}

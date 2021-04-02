@@ -336,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c7bed9332cb2c48a5e1321a49c2883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  automatic: 1
   damage: 25
   fireRate: 8
   muzzleFlash: {fileID: 7029653807590945598}
