@@ -8,6 +8,10 @@ public class Gun : MonoBehaviour
     public bool automatic = false;
     public float damage = 25f;
     public float fireRate = 5f;
+    [Range(0f,100f)]
+    public float sideRecoil = 1f;
+    [Range(0f, 100f)]
+    public float upRecoil = 1f;
 
     public ParticleSystem muzzleFlash;
     public GameObject impactEffect;
@@ -15,8 +19,6 @@ public class Gun : MonoBehaviour
     public Transform leftHandGrip;
     public Transform rightHandGrip;
 
-    public float sideRecoil = 1f;
-    public float upRecoil = 1f;
     public MouseLook mouseLook;
 
     Camera fpsCam;
@@ -75,7 +77,7 @@ public class Gun : MonoBehaviour
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
             float side = UnityEngine.Random.Range(-sideRecoil, sideRecoil);
-            mouseLook.AddRecoil(upRecoil / 5, side / 15);
+            mouseLook.AddRecoil(upRecoil / 1000, side / 1000);
         }
         if (Input.GetButtonUp("Fire1"))
         {

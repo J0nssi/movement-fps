@@ -56,10 +56,11 @@ public class PlayerMovement : MonoBehaviour
             controller.stepOffset = 0;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * x + transform.forward * z;
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+            Vector3 move = transform.right * x + transform.forward * z;
 
         if(move != Vector3.zero && isGrounded)
         {
@@ -77,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButton("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
         }
 
         velocity.y += gravity * Time.deltaTime;

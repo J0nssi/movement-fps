@@ -339,10 +339,13 @@ MonoBehaviour:
   automatic: 1
   damage: 20
   fireRate: 10
+  sideRecoil: 30
+  upRecoil: 40
   muzzleFlash: {fileID: 6185229357874812658}
-  impactEffect: {fileID: 100006, guid: 0438351a6e6422d43a09930e9be00ee9, type: 3}
+  impactEffect: {fileID: 100006, guid: 8ce91a4b2216029449514c5b584e4797, type: 3}
   leftHandGrip: {fileID: 7034020507155253304}
   rightHandGrip: {fileID: 7034020507617620141}
+  mouseLook: {fileID: 0}
 --- !u!1001 &153380806684779372
 PrefabInstance:
   m_ObjectHideFlags: 0

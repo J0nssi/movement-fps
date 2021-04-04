@@ -37,7 +37,7 @@ public class WeaponsController : MonoBehaviour
     {
         weapons[activeWeaponIndex].SetActive(false);
         
-        if(index > 0 && index < weapons.Count)
+        if(index >= 0 && index < weapons.Count)
         {
             weapons[index].SetActive(true);
             activeWeaponIndex = index;

@@ -5251,12 +5251,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   automatic: 0
-  damage: 15
+  damage: 34
   fireRate: 6
+  sideRecoil: 30
+  upRecoil: 50
   muzzleFlash: {fileID: 6185119329723686136}
-  impactEffect: {fileID: 100006, guid: 0438351a6e6422d43a09930e9be00ee9, type: 3}
+  impactEffect: {fileID: 100006, guid: 8ce91a4b2216029449514c5b584e4797, type: 3}
   leftHandGrip: {fileID: 1280016828194161866}
   rightHandGrip: {fileID: 5151368857298310947}
+  mouseLook: {fileID: 0}
 --- !u!1 &7942163741795490136
 GameObject:
   m_ObjectHideFlags: 0
