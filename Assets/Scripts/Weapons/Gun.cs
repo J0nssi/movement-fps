@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -7,14 +8,19 @@ public class Gun : MonoBehaviour
     public bool automatic = false;
     public float damage = 25f;
     public float fireRate = 5f;
-    
+
     public ParticleSystem muzzleFlash;
     public GameObject impactEffect;
-    
+
     public Transform leftHandGrip;
     public Transform rightHandGrip;
 
+    public float sideRecoil = 1f;
+    public float upRecoil = 1f;
+    public MouseLook mouseLook;
+
     Camera fpsCam;
+
     AudioSource gunsound;
     Animator anim;
 
@@ -63,11 +69,17 @@ public class Gun : MonoBehaviour
         rightArmTarget.position = rightHandGrip.position;
         rightArmTarget.rotation = rightHandGrip.rotation;
 
-        if ((automatic && Input.GetButton("Fire1") && Time.time >= nextTimeToFire) || 
+        if ((automatic && Input.GetButton("Fire1") && Time.time >= nextTimeToFire) ||
             (!automatic && Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire))
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
+            float side = UnityEngine.Random.Range(-sideRecoil, sideRecoil);
+            mouseLook.AddRecoil(upRecoil / 5, side / 15);
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            mouseLook.AddRecoil(0, 0);
         }
     }
 
@@ -86,5 +98,6 @@ public class Gun : MonoBehaviour
             Destroy(impactGO, 1f);
         }
     }
+
 
 }
