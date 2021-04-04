@@ -18,14 +18,15 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     Vector3 velocity;
-
     bool isGrounded;
+    float stepOffset;
     
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
+        stepOffset = controller.stepOffset;
     }
 
     // Update is called once per frame
@@ -36,14 +37,23 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && velocity.y < 0)
         {
+            controller.stepOffset = stepOffset;
             float fallHeight = Mathf.Pow(velocity.y, 2) / -2f / gravity;
             if (fallHeight > fallDamageHeight)
             {
-                int damage = (int)((fallHeight - fallDamageHeight)*20);
+                int damage = (int)((fallHeight - fallDamageHeight) * 20);
                 Debug.Log("Damaged player for: " + damage);
                 PlayerHealth.singleton.Damage(damage);
             }
             velocity.y = -2f;
+        }
+        else if (isGrounded)
+        {
+            controller.stepOffset = stepOffset;
+        }
+        else if (!isGrounded)
+        {
+            controller.stepOffset = 0;
         }
 
         float x = Input.GetAxis("Horizontal");

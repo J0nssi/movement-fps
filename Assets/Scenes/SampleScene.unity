@@ -580,7 +580,11 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_Name: pb_Mesh-33474
+=======
+  m_Name: pb_Mesh-1760
+>>>>>>> e9d309424e6bc24faf9316b387c46789498f2c46
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1274,7 +1278,11 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_Name: pb_Mesh35266
+=======
+  m_Name: pb_Mesh25436
+>>>>>>> e9d309424e6bc24faf9316b387c46789498f2c46
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11716,7 +11724,11 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_Name: pb_Mesh35448
+=======
+  m_Name: pb_Mesh25618
+>>>>>>> e9d309424e6bc24faf9316b387c46789498f2c46
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -41978,10 +41990,20 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1702327861206906681, guid: 6be34ddb6feb4f849824378e299c230f,
+        type: 3}
+      propertyPath: field of view
+      value: 89.10338
+      objectReference: {fileID: 0}
     - target: {fileID: 1947564827081548952, guid: 6be34ddb6feb4f849824378e299c230f,
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2490392510318415674, guid: 6be34ddb6feb4f849824378e299c230f,
+        type: 3}
+      propertyPath: field of view
+      value: 89.10338
       objectReference: {fileID: 0}
     - target: {fileID: 3848249887212355975, guid: 6be34ddb6feb4f849824378e299c230f,
         type: 3}
@@ -42047,6 +42069,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171221732505553860, guid: 6be34ddb6feb4f849824378e299c230f,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 311
       objectReference: {fileID: 0}
     - target: {fileID: 4171221732689842866, guid: 6be34ddb6feb4f849824378e299c230f,
         type: 3}
@@ -42202,6 +42229,21 @@ PrefabInstance:
         type: 3}
       propertyPath: automatic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528182482955315812, guid: 6be34ddb6feb4f849824378e299c230f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6289575667937355256, guid: 6be34ddb6feb4f849824378e299c230f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6837591250416965396, guid: 6be34ddb6feb4f849824378e299c230f,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4171221732758831884, guid: 6be34ddb6feb4f849824378e299c230f, type: 3}
