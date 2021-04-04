@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
     public float fallDamageHeight = 10f;
+    public bool crouching = false;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;

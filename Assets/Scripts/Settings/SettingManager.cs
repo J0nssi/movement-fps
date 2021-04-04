@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class SettingManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SettingManager : MonoBehaviour
     public Dropdown resolutionDropdown;
     public Slider sensitivitySlider;
     public Slider volumeSlider;
+    public Button applyButton;
 
     public MouseLook mouseLook;
     public Canvas options;
@@ -50,12 +52,15 @@ public class SettingManager : MonoBehaviour
         resolutionDropdown.onValueChanged.AddListener(delegate { OnResolutionChange(); });
         sensitivitySlider.onValueChanged.AddListener(delegate { OnSensitivityChange(); });
         volumeSlider.onValueChanged.AddListener(delegate { OnVolumeChange(); });
+        applyButton.onClick.AddListener(delegate { OnApplyButtonClick(); });
 
         resolutions = Screen.resolutions;
         foreach(Resolution resolution in resolutions)
         {
             resolutionDropdown.options.Add(new Dropdown.OptionData(resolution.ToString()));
         }
+
+        LoadSettings();
     }
 
     public void OnFullScreenToggle()
@@ -66,6 +71,7 @@ public class SettingManager : MonoBehaviour
     public void OnResolutionChange()
     {
         Screen.SetResolution(resolutions[resolutionDropdown.value].width, resolutions[resolutionDropdown.value].height, Screen.fullScreen);
+        gameSettings.resolutionIndex = resolutionDropdown.value;
     }
 
     public void OnSensitivityChange()
@@ -78,13 +84,23 @@ public class SettingManager : MonoBehaviour
         volumeSource.volume = gameSettings.volume = volumeSlider.value;
     }
 
+    public void OnApplyButtonClick()
+    {
+        SaveSettings();
+    }
+
     public void SaveSettings()
     {
-        //OPTIONS MENU PART 3 @ 14:30 GAMEGRIND
+        string jsonData = JsonUtility.ToJson(gameSettings, true);
+        File.WriteAllText(Application.persistentDataPath + "/gamesettings.json", jsonData);
     }
 
     public void LoadSettings()
     {
-
+        gameSettings = JsonUtility.FromJson<GameSettings>(File.ReadAllText(Application.persistentDataPath + "/gamesettings.json"));
+        resolutionDropdown.value = gameSettings.resolutionIndex;
+        fullscreenToggle.isOn = gameSettings.fullscreen;
+        sensitivitySlider.value = gameSettings.sensitivity;
+        volumeSlider.value = gameSettings.volume;
     }
 }
