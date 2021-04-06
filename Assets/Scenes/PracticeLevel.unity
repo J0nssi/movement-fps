@@ -42063,11 +42063,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4038711419781733903, guid: f29d34e1d0cd80044b68923eabb5c7e6,
-        type: 3}
-      propertyPath: m_AngularSpeed
-      value: 600
-      objectReference: {fileID: 0}
     - target: {fileID: 4159382691985463614, guid: f29d34e1d0cd80044b68923eabb5c7e6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
