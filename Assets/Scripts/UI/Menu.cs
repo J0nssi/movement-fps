@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour
 {
     public void PracticeRoom()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("PracticeLevel");
     }
 
     public void CreateMatch()

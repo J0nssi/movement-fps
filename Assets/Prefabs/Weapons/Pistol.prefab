@@ -48,7 +48,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -5177,7 +5177,12 @@ MonoBehaviour:
   impactEffect: {fileID: 100006, guid: 8ce91a4b2216029449514c5b584e4797, type: 3}
   leftHandGrip: {fileID: 1280016828194161866}
   rightHandGrip: {fileID: 5151368857298310947}
-  mouseLook: {fileID: 0}
+  holdingFire: 0
+  fire: 0
+  stoppedfiring: 0
+  leftArmTarget: {fileID: 0}
+  rightArmTarget: {fileID: 0}
+  raycastOrigin: {fileID: 0}
 --- !u!1 &7942163741795490136
 GameObject:
   m_ObjectHideFlags: 0

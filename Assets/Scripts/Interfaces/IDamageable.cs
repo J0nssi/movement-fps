@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICharacter
+public interface IDamageable
 {
-    void Damage(int amount);
+    void Damage(float amount);
 
     void Kill();
 }

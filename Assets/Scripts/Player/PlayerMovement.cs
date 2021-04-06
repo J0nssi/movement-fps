@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // Character components
     private CharacterController controller;
     private Animator anim;
+    private IDamageable player;
 
+    // Character movement properties
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
     public float fallDamageHeight = 10f;
-    public bool crouching = false;
 
+    // Ground check
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
+    // Character movement variables
     Vector3 velocity;
     bool isGrounded;
     float stepOffset;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        player = GetComponent<IDamageable>();
         anim = GetComponentInChildren<Animator>();
         stepOffset = controller.stepOffset;
     }
@@ -38,13 +43,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && velocity.y < 0)
         {
             controller.stepOffset = stepOffset;
-            float fallHeight = Mathf.Pow(velocity.y, 2) / -2f / gravity;
-            if (fallHeight > fallDamageHeight)
-            {
-                int damage = (int)((fallHeight - fallDamageHeight) * 20);
-                Debug.Log("Damaged player for: " + damage);
-                PlayerHealth.singleton.Damage(damage);
-            }
+            FallDamageHandler();
             velocity.y = -2f;
         }
         else if (isGrounded)
@@ -62,28 +61,45 @@ public class PlayerMovement : MonoBehaviour
             float z = Input.GetAxis("Vertical");
             Vector3 move = transform.right * x + transform.forward * z;
 
-        if(move != Vector3.zero && isGrounded)
-        {
-            //Run
-            anim.SetFloat("Speed", z);
-        }
-        else if(move == Vector3.zero)
-        {
-            //Idle
-            anim.SetFloat("Speed", 0);
-        }
-        
-        controller.Move(move * speed * Time.deltaTime);
+            UpdateAnimation(move, z);
 
-        if (Input.GetButton("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+            controller.Move(move * speed * Time.deltaTime);
+
+            if (Input.GetButton("Jump") && isGrounded)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
         }
 
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
 
+    }
+
+    // UpdateAnimation()
+    void UpdateAnimation(Vector3 move, float z)
+    {
+        if (move != Vector3.zero && isGrounded)
+        {
+            //Run
+            anim.SetFloat("Speed", z);
+        }
+        else if (move == Vector3.zero)
+        {
+            //Idle
+            anim.SetFloat("Speed", 0);
+        }
+    }
+
+    void FallDamageHandler()
+    {
+        float fallHeight = Mathf.Pow(velocity.y, 2) / -2f / gravity;
+        if (fallHeight > fallDamageHeight)
+        {
+            int damage = (int)((fallHeight - fallDamageHeight) * 20);
+            Debug.Log("Damaged player for: " + damage);
+            player.Damage(damage);
+        }
     }
 }

@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class AlignWithCamera : MonoBehaviour
 {
-    Camera fpsCam;
+    public Transform lookDirection;
     // Start is called before the first frame update
     void Start()
     {
-        fpsCam = Camera.main;
-        transform.rotation = fpsCam.transform.rotation;
+        transform.rotation = lookDirection.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = fpsCam.transform.rotation;
+        transform.rotation = lookDirection.rotation;
     }
 }

@@ -1,26 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerHealth : MonoBehaviour, ICharacter
+public class CharacterHealth : MonoBehaviour, IDamageable
 {
-    public static PlayerHealth singleton;
-    public int maxHealth = 100;
-    private int health;
+    public float maxHealth = 100;
+    private float health;
 
     // Start is called before the first frame update
     void Start()
     {
-        singleton = this;
         health = maxHealth;
     }
 
-    public int getHealth()
+    public float getHealth()
     {
         return health;
     }
 
-    public void Damage(int amount)
+    public void Damage(float amount)
     {
         if (amount < 0)
         {
@@ -32,7 +31,7 @@ public class PlayerHealth : MonoBehaviour, ICharacter
         }
     }
 
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
         if(amount < 0)
         {
@@ -50,6 +49,8 @@ public class PlayerHealth : MonoBehaviour, ICharacter
 
     public void Kill()
     {
+        if(gameObject.name == "Player")
+            SceneManager.LoadScene("PracticeLevel");
         Destroy(gameObject);
     }
 }
