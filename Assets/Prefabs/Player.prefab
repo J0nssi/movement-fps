@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4171221733128489799}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  healthIndicator: {fileID: 0}
 --- !u!1 &7960310710033572562
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +292,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 500
-  recoilDamping: 7.5
   playerBody: {fileID: 4171221733128489794}
 --- !u!1001 &7537992288628444624
 PrefabInstance:
@@ -310,6 +310,11 @@ PrefabInstance:
       propertyPath: mouseLook
       value: 
       objectReference: {fileID: 3314945817279960074}
+    - target: {fileID: 701505455824529155, guid: 2dc73bcc0d4f45d4fa310be0f164f89e,
+        type: 3}
+      propertyPath: weaponAudioManager
+      value: 
+      objectReference: {fileID: 199520441634487937}
     - target: {fileID: 701505455824529155, guid: 2dc73bcc0d4f45d4fa310be0f164f89e,
         type: 3}
       propertyPath: RecoilHandlerObject
@@ -337,6 +342,11 @@ PrefabInstance:
       objectReference: {fileID: 3314945817279960074}
     - target: {fileID: 4860646481545173693, guid: 2dc73bcc0d4f45d4fa310be0f164f89e,
         type: 3}
+      propertyPath: weaponAudioManager
+      value: 
+      objectReference: {fileID: 199520441634487937}
+    - target: {fileID: 4860646481545173693, guid: 2dc73bcc0d4f45d4fa310be0f164f89e,
+        type: 3}
       propertyPath: RecoilHandlerObject
       value: 
       objectReference: {fileID: 9083117141483012512}
@@ -350,6 +360,11 @@ PrefabInstance:
       propertyPath: mouseLook
       value: 
       objectReference: {fileID: 3314945817279960074}
+    - target: {fileID: 5500230720917151064, guid: 2dc73bcc0d4f45d4fa310be0f164f89e,
+        type: 3}
+      propertyPath: weaponAudioManager
+      value: 
+      objectReference: {fileID: 199520441634487937}
     - target: {fileID: 5500230720917151064, guid: 2dc73bcc0d4f45d4fa310be0f164f89e,
         type: 3}
       propertyPath: RecoilHandlerObject
@@ -422,6 +437,11 @@ PrefabInstance:
       objectReference: {fileID: 3314945817279960074}
     - target: {fileID: 6927210484340975775, guid: 2dc73bcc0d4f45d4fa310be0f164f89e,
         type: 3}
+      propertyPath: weaponAudioManager
+      value: 
+      objectReference: {fileID: 199520441634487937}
+    - target: {fileID: 6927210484340975775, guid: 2dc73bcc0d4f45d4fa310be0f164f89e,
+        type: 3}
       propertyPath: RecoilHandlerObject
       value: 
       objectReference: {fileID: 9083117141483012512}
@@ -468,6 +488,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7537992288628444624}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &199520441634487937 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7663018547288240977, guid: 2dc73bcc0d4f45d4fa310be0f164f89e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7537992288628444624}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5325cd9398c9640a4c253ec8c2e373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8283210555524647916
 PrefabInstance:
   m_ObjectHideFlags: 0

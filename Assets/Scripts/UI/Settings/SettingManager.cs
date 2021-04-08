@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class SettingManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class SettingManager : MonoBehaviour
     public Dropdown resolutionDropdown;
     public Slider sensitivitySlider;
     public Slider volumeSlider;
+    public Button resetLevelButton;
     public Button applyButton;
 
     public MouseLook mouseLook;
@@ -48,11 +50,13 @@ public class SettingManager : MonoBehaviour
     {
         gameSettings = new GameSettings();
         options.gameObject.SetActive(false);
+
         fullscreenToggle.onValueChanged.AddListener(delegate { OnFullScreenToggle(); });
         resolutionDropdown.onValueChanged.AddListener(delegate { OnResolutionChange(); });
         sensitivitySlider.onValueChanged.AddListener(delegate { OnSensitivityChange(); });
         volumeSlider.onValueChanged.AddListener(delegate { OnVolumeChange(); });
         applyButton.onClick.AddListener(delegate { OnApplyButtonClick(); });
+        resetLevelButton.onClick.AddListener(delegate { OnResetLevelClick(); });
 
         resolutions = Screen.resolutions;
         foreach(Resolution resolution in resolutions)
@@ -87,6 +91,11 @@ public class SettingManager : MonoBehaviour
     public void OnApplyButtonClick()
     {
         SaveSettings();
+    }
+
+    public void OnResetLevelClick()
+    {
+        SceneManager.LoadScene("PracticeLevel");
     }
 
     public void SaveSettings()

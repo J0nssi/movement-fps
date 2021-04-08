@@ -52,6 +52,7 @@ public class EnemyAI : MonoBehaviour
     {
         nextMoveTime = Time.time + waitBeforeMoving;
         controller = GetComponent<CharacterController>();
+        character = GetComponent<IDamageable>();
         weaponsController = GetComponentInChildren<EnemyWeaponsController>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
@@ -85,25 +86,15 @@ public class EnemyAI : MonoBehaviour
             controller.stepOffset = 0;
         }
 
-        if (!vision.IsTargetingPlayer() && vision.VisitedLastSeen() && nextMoveTime <= Time.time) Patrolling();
-        if (!vision.IsTargetingPlayer() && !vision.VisitedLastSeen() && nextMoveTime <= Time.time) Searching();
-        if (vision.IsTargetingPlayer()) Attacking();
+        if (!vision.DetectedCharacter() && vision.VisitedLastSeen() && nextMoveTime <= Time.time) Patrolling();
+        if (!vision.DetectedCharacter() && !vision.VisitedLastSeen() && nextMoveTime <= Time.time) Searching();
+        if (vision.DetectedCharacter()) Attacking();
 
 
         
 
         // -- Update animation controller variables --
         UpdateAnimation();
-
-        // JUMP
-        //if (Input.GetButton("Jump") && isGrounded)
-        //{
-        //    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        //}
-
-        //velocity.y += gravity * Time.deltaTime;
-        
-        //controller.Move(velocity * Time.deltaTime);
     }
 
     void Patrolling()
@@ -143,11 +134,13 @@ public class EnemyAI : MonoBehaviour
     }
     void Attacking()
     {
-        Debug.Log("Attacking");
         agent.SetDestination(transform.position);
-        if(vision.IsTargetingPlayer())
+        if(vision.DetectedCharacter())
         {
             weaponsController.firing = true;
+        } else
+		{
+            weaponsController.firing = false;
         }
     }
 
@@ -189,7 +182,7 @@ public class EnemyAI : MonoBehaviour
     // UpdateAnimation()
     void UpdateAnimation()
     {
-        Vector3 move = agent.velocity;
+        Vector3 move = agent.desiredVelocity;
         move.y = 0f;
         if (move != Vector3.zero && isGrounded)
         {

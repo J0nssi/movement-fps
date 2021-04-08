@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5872548903023544222}
   - component: {fileID: 7377892832767446722}
   - component: {fileID: 7457886886410997986}
+  - component: {fileID: 7663018547288240977}
   m_Layer: 9
   m_Name: PlayerWeaponController
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc2d819d6e38244ba247e7021f47fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookDirection: {fileID: 0}
 --- !u!114 &7457886886410997986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +63,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeWeaponIndex: 0
+  leftArmTarget: {fileID: 0}
+  rightArmTarget: {fileID: 0}
+  playerCam: {fileID: 0}
+  recoilHandlerObject: {fileID: 0}
+--- !u!114 &7663018547288240977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2980430196787756451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5325cd9398c9640a4c253ec8c2e373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stereoPan: -1
+  spatialBlend: 0.45
+  minDistance: 1
+  maxDistance: 500
+  sounds:
+  - name: gunshot_AK47
+    clip: {fileID: 8300000, guid: 65201ddabb4144f6a8fb9480120b7656, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: gunshot_M4
+    clip: {fileID: 8300000, guid: 1b766da7cc2d648aa84e36cb5fe8abcb, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: gunshot_Pistol
+    clip: {fileID: 8300000, guid: 1b766da7cc2d648aa84e36cb5fe8abcb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: gunshot_SilencedPistol
+    clip: {fileID: 8300000, guid: 1b766da7cc2d648aa84e36cb5fe8abcb, type: 3}
+    volume: 0.8
+    pitch: 2.1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1001 &3522554325566998760
 PrefabInstance:
   m_ObjectHideFlags: 0

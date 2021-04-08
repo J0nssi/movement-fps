@@ -15,15 +15,16 @@ public class Weapon : MonoBehaviour
     [Range(0f, 100f)]
     public float upRecoil = 1f;
 
+    public WeaponAudioManager weaponAudioManager;
     public ParticleSystem muzzleFlash;
     public GameObject impactEffect;
-
+    public GameObject characterImpactEffect;
     public Transform leftHandGrip;
     public Transform rightHandGrip;
 
     public GameObject RecoilHandlerObject;
 
-    AudioSource gunShotSound;
+    public string soundName;
     Animator anim;
     // --SAA PYSYÄ WEAPONIN SISÄLLÄ
 
@@ -48,8 +49,6 @@ public class Weapon : MonoBehaviour
     {
         recoilHandler = RecoilHandlerObject.GetComponent<IRecoilHandler>();
         anim = GetComponent<Animator>();
-        gunShotSound = GetComponent<AudioSource>();
-
         //PlaceHands();
     }
     //Once Object is Enabled
@@ -80,18 +79,30 @@ public class Weapon : MonoBehaviour
     {
         muzzleFlash.Play();
         anim.SetTrigger("FiringTrigger");
-        gunShotSound.Play();
+        weaponAudioManager.Play(soundName);
 
         RaycastHit hit;
         if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit))
         {
-            Debug.Log(hit.transform.name);
+            GameObject hitImpactEffect;
             IDamageable target;
+
             if(hit.transform.TryGetComponent<IDamageable>(out target))
             {
                 target.Damage(damage);
+                Debug.Log(hit.transform.name + " damaged for: " + damage);
             }
-            GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+
+            // Different impact effect for enemy and environment;
+            if(hit.transform.tag == "Enemy" || hit.transform.tag == "Player")
+            {
+                hitImpactEffect = characterImpactEffect;
+            }
+            else
+            {
+                hitImpactEffect = impactEffect;
+            }
+            GameObject impactGO = Instantiate(hitImpactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impactGO, 1f);
         }
     }

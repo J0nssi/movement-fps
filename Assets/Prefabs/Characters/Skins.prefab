@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 6521435239812187061}
   - component: {fileID: 4736530733121486930}
   m_Layer: 0
-  m_Name: Character_Male_Police.001
+  m_Name: Character_Male_Police
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 9836615817111914}
   - component: {fileID: 8755108677099191939}
   m_Layer: 0
-  m_Name: Character_Male_Jacket
+  m_Name: Character_Male_Jacket_fps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 8652124153146048578}
   - component: {fileID: 1445382600998439841}
   m_Layer: 0
-  m_Name: Character_Male_Hoodie.001
+  m_Name: Character_Male_Hoodie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1094,7 +1094,7 @@ GameObject:
   - component: {fileID: 3466906196214179628}
   - component: {fileID: 1623697287555806805}
   m_Layer: 0
-  m_Name: Character_Male_Police
+  m_Name: Character_Male_Police_fps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1957,7 +1957,7 @@ GameObject:
   - component: {fileID: 163772025412663910}
   - component: {fileID: 7944744900599373405}
   m_Layer: 0
-  m_Name: Character_Male_Jacket.001
+  m_Name: Character_Male_Jacket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2262,7 +2262,7 @@ GameObject:
   - component: {fileID: 4390681461480337224}
   - component: {fileID: 7793233865325634340}
   m_Layer: 0
-  m_Name: Character_Male_Hoodie
+  m_Name: Character_Male_Hoodie_fps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2724,7 +2724,7 @@ GameObject:
   - component: {fileID: 889053089212200044}
   - component: {fileID: 2319159839595492158}
   m_Layer: 0
-  m_Name: Character_Female_Police
+  m_Name: Character_Female_Police_fps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2879,7 +2879,7 @@ GameObject:
   - component: {fileID: 7396405741802131131}
   - component: {fileID: 5419900947095325809}
   m_Layer: 0
-  m_Name: Character_Female_Police.001
+  m_Name: Character_Female_Police
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
