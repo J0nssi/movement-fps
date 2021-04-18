@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
+using TMPro;
 
 public class Weapon : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Weapon : MonoBehaviour
     public float upRecoil = 1f;
 
     //Reloading
-    public int maxGunAmmo = 30;
+    public int maxGunMagSize = 30;
     //public int currentAmmo;
     public int magazine = 30, ammo, mags = 4;
     public float reloadTime = 2f;
@@ -78,13 +79,12 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-            
         if (magazine <= 0)
         {
             StartCoroutine(Reload());
             return;
         }
-        else if(magazine < maxGunAmmo && Input.GetKeyDown(KeyCode.R))
+        else if(magazine < maxGunMagSize && Input.GetKeyDown(KeyCode.R))
         {
             StartCoroutine(Reload());
             return;
@@ -103,16 +103,14 @@ public class Weapon : MonoBehaviour
         {
             recoilHandler.ResetRecoil();
         }
-
-        
     }
 
     IEnumerator Reload()
     {
         isReloading = true;
         yield return new WaitForSeconds(reloadTime);
-        ammo -= maxGunAmmo - magazine;
-        magazine = maxGunAmmo;
+        ammo -= maxGunMagSize - magazine;
+        magazine = maxGunMagSize;
         if(ammo < 0)
         {
             magazine += ammo;
