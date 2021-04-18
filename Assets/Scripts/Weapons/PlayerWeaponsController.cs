@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerWeaponsController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerWeaponsController : MonoBehaviour
     IRecoilHandler recoilHandler;
     List<GameObject> weapons = new List<GameObject>();
     Weapon equippedWeapon;
+    public TextMeshProUGUI ammoText;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +43,7 @@ public class PlayerWeaponsController : MonoBehaviour
         {
             changeActiveWeapon(activeWeaponIndex + 1);
         }
-        
+
     }
 
     void changeActiveWeapon(int index)

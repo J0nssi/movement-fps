@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -14,6 +15,13 @@ public class Weapon : MonoBehaviour
     public float sideRecoil = 1f;
     [Range(0f, 100f)]
     public float upRecoil = 1f;
+
+    //Reloading
+    public int maxGunAmmo = 30;
+    //public int currentAmmo;
+    public int magazine = 30, ammo, mags = 4;
+    public float reloadTime = 2f;
+    private bool isReloading = false;
 
     public WeaponAudioManager weaponAudioManager;
     public ParticleSystem muzzleFlash;
@@ -50,7 +58,10 @@ public class Weapon : MonoBehaviour
         recoilHandler = RecoilHandlerObject.GetComponent<IRecoilHandler>();
         anim = GetComponent<Animator>();
         //PlaceHands();
+        // toimii currentAmmo = maxAmmo;
+        ammo = magazine * mags;
     }
+
     //Once Object is Enabled
     private void OnEnable()
     {
@@ -60,7 +71,26 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         PlaceHands();
-        if (holdingFire && !triggerPulled)
+        if (isReloading)
+        {
+            triggerPulled = false;
+            recoilHandler.ResetRecoil();
+            return;
+        }
+
+            
+        if (magazine <= 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+        else if(magazine < maxGunAmmo && Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+
+        if (holdingFire && !triggerPulled && magazine > 0)
         {
             FireWeapon();
         }
@@ -73,6 +103,22 @@ public class Weapon : MonoBehaviour
         {
             recoilHandler.ResetRecoil();
         }
+
+        
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        yield return new WaitForSeconds(reloadTime);
+        ammo -= maxGunAmmo - magazine;
+        magazine = maxGunAmmo;
+        if(ammo < 0)
+        {
+            magazine += ammo;
+            ammo = 0;
+        }
+        isReloading = false;
     }
 
     void Shoot()
@@ -80,6 +126,8 @@ public class Weapon : MonoBehaviour
         muzzleFlash.Play();
         anim.SetTrigger("FiringTrigger");
         weaponAudioManager.Play(soundName);
+        //currentAmmo--;
+        magazine--;
 
         RaycastHit hit;
         if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit))
@@ -90,7 +138,7 @@ public class Weapon : MonoBehaviour
             if(hit.transform.TryGetComponent<IDamageable>(out target))
             {
                 target.Damage(damage);
-                Debug.Log(hit.transform.name + " damaged for: " + damage);
+                UnityEngine.Debug.Log(hit.transform.name + " damaged for: " + damage);
             }
 
             // Different impact effect for enemy and environment;
