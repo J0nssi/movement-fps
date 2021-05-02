@@ -244,9 +244,10 @@ MonoBehaviour:
   fireRate: 8
   sideRecoil: 20
   upRecoil: 50
+  maxGunMagSize: 30
   magazine: 30
   ammo: 0
-  mags: 3
+  mags: 4
   reloadTime: 2
   weaponAudioManager: {fileID: 0}
   muzzleFlash: {fileID: 7029653807590945598}

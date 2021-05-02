@@ -10,6 +10,13 @@ public class SpawnPoint
 	public void Spawn(GameObject character)
 	{
 		GameObject spawnedCharacter = GameObject.Instantiate(character, transform.position, transform.rotation);
+		if (character.tag == "Player")
+		{
+			GameObject deathcam = GameObject.Find("DeathCam");
+			if (deathcam != null)
+				deathcam.GetComponent<Camera>().enabled = false;
+				deathcam.GetComponent<AudioListener>().enabled = false;
+		}
 		spawnedCharacter.name = spawnedCharacter.name.Replace("(Clone)", "");
 		nextSpawnTime = Time.time + spawnPointCooldown;
 	}

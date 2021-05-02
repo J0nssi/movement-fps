@@ -12,6 +12,7 @@ public class SettingManager : MonoBehaviour
     public Slider volumeSlider;
     public Button resetLevelButton;
     public Button applyButton;
+    public Button quitButton;
 
     public MouseLook mouseLook;
     public Canvas options;
@@ -57,6 +58,7 @@ public class SettingManager : MonoBehaviour
         volumeSlider.onValueChanged.AddListener(delegate { OnVolumeChange(); });
         applyButton.onClick.AddListener(delegate { OnApplyButtonClick(); });
         resetLevelButton.onClick.AddListener(delegate { OnResetLevelClick(); });
+        quitButton.onClick.AddListener(delegate { OnQuitToMenuClick(); });
 
         resolutions = Screen.resolutions;
         foreach(Resolution resolution in resolutions)
@@ -98,6 +100,11 @@ public class SettingManager : MonoBehaviour
         SceneManager.LoadScene("PracticeLevel");
     }
 
+    public void OnQuitToMenuClick()
+	{
+        SceneManager.LoadScene("Menu");
+	}
+
     public void SaveSettings()
     {
         string jsonData = JsonUtility.ToJson(gameSettings, true);
@@ -107,9 +114,13 @@ public class SettingManager : MonoBehaviour
     public void LoadSettings()
     {
         gameSettings = JsonUtility.FromJson<GameSettings>(File.ReadAllText(Application.persistentDataPath + "/gamesettings.json"));
-        resolutionDropdown.value = gameSettings.resolutionIndex;
-        fullscreenToggle.isOn = gameSettings.fullscreen;
-        sensitivitySlider.value = gameSettings.sensitivity;
-        volumeSlider.value = gameSettings.volume;
+        if(gameSettings != null)
+		{
+            resolutionDropdown.value = gameSettings.resolutionIndex;
+            fullscreenToggle.isOn = gameSettings.fullscreen;
+            sensitivitySlider.value = gameSettings.sensitivity;
+            volumeSlider.value = gameSettings.volume;
+        }
+        
     }
 }

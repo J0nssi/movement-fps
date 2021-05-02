@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public interface IDamageable
 {
-    void Damage(float amount);
+    bool Damage(float amount);
 
     void Kill();
 }

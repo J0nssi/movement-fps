@@ -60,6 +60,7 @@ public class SpawningManager : MonoBehaviour
             activeSpawnPoints[i].Spawn(character);
             i++;
         }
+        MatchManager.i.AddAllPlayers(characters);
     }
 
     void SpawnCharacters()
@@ -92,6 +93,5 @@ public class SpawningManager : MonoBehaviour
 	{
         float time = Time.time + respawnTime;
         spawnQueue.Add(time, character.name);
-        
 	}
 }

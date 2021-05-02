@@ -5158,6 +5158,12 @@ MonoBehaviour:
   fireRate: 6
   sideRecoil: 30
   upRecoil: 50
+  maxGunMagSize: 13
+  magazine: 13
+  ammo: 0
+  mags: 4
+  reloadTime: 2
+  weaponAudioManager: {fileID: 0}
   muzzleFlash: {fileID: 6185119329723686136}
   impactEffect: {fileID: 100006, guid: 8ce91a4b2216029449514c5b584e4797, type: 3}
   characterImpactEffect: {fileID: 100006, guid: 0c0f9487700475a44a34780a68fe9a88,

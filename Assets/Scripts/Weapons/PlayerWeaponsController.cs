@@ -18,6 +18,7 @@ public class PlayerWeaponsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ammoText = GameObject.Find("ammoText (TMP)").GetComponent<TextMeshProUGUI>(); ;
         recoilHandler = recoilHandlerObject.GetComponent<IRecoilHandler>();
         foreach (Transform child in transform)
         {
@@ -44,6 +45,7 @@ public class PlayerWeaponsController : MonoBehaviour
             changeActiveWeapon(activeWeaponIndex + 1);
         }
 
+        ammoText.text = equippedWeapon.magazine + "/" + equippedWeapon.ammo;
     }
 
     void changeActiveWeapon(int index)

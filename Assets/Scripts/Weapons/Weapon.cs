@@ -66,6 +66,7 @@ public class Weapon : MonoBehaviour
     //Once Object is Enabled
     private void OnEnable()
     {
+        isReloading = false;
         PlaceHands();
     }
     // Update is called once per frame
@@ -84,7 +85,7 @@ public class Weapon : MonoBehaviour
             StartCoroutine(Reload());
             return;
         }
-        else if(magazine < maxGunMagSize && Input.GetKeyDown(KeyCode.R))
+        else if(magazine < maxGunMagSize && Input.GetKeyDown(KeyCode.R) && gameObject.transform.parent.name == "PlayerWeaponsController")
         {
             StartCoroutine(Reload());
             return;
@@ -135,8 +136,9 @@ public class Weapon : MonoBehaviour
 
             if(hit.transform.TryGetComponent<IDamageable>(out target))
             {
-                target.Damage(damage);
+                bool killed = target.Damage(damage);
                 UnityEngine.Debug.Log(hit.transform.name + " damaged for: " + damage);
+                if (killed) MatchManager.i.AddFrag(transform.parent.parent.name);
             }
 
             // Different impact effect for enemy and environment;
@@ -170,11 +172,13 @@ public class Weapon : MonoBehaviour
 
     void PlaceHands()
     {
-        //Place hands correctly
-        leftArmTarget.position = leftHandGrip.position;
-        leftArmTarget.rotation = leftHandGrip.rotation;
-        rightArmTarget.position = rightHandGrip.position;
-        rightArmTarget.rotation = rightHandGrip.rotation;
+        if(leftArmTarget && leftHandGrip && rightArmTarget && rightHandGrip)
+		{
+            //Place hands correctly
+            leftArmTarget.position = leftHandGrip.position;
+            leftArmTarget.rotation = leftHandGrip.rotation;
+            rightArmTarget.position = rightHandGrip.position;
+            rightArmTarget.rotation = rightHandGrip.rotation;
+        }
     }
-
 }
